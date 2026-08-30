@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todos · Coaction + SharedWorker</title>
+    <script>
+      // Apply the persisted theme before first paint to avoid a flash.
+      (() => {
+        try {
+          const stored = localStorage.getItem('todos-theme');
+          const dark =
+            stored === 'dark' ||
+            ((stored === 'system' || !stored) &&
+              matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.classList.toggle('dark', dark);
+        } catch {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
